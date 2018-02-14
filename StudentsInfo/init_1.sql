@@ -36,9 +36,12 @@ CREATE TABLE tb_course
 GO
 CREATE TABLE tb_student_course
 (
-	courseID		NCHAR(10) FOREIGN KEY  REFERENCES tb_course,
-	studentID		NCHAR(10) FOREIGN KEY  REFERENCES tb_student ,
+	courseID		NCHAR(10) ,
+	studentID		NCHAR(10) ,
 	grade			int		 ,
+	CONSTRAINT FK_tb_student_course 
+			FOREIGN KEY (courseID) REFERENCES tb_course(courseID),
+			FOREIGN KEY (studentID) REFERENCES tb_student(studentID),
 );
 GO
 CREATE TABLE tb_class
@@ -49,8 +52,11 @@ CREATE TABLE tb_class
 GO
 CREATE TABLE tb_student_class
 (
-	studentID		NCHAR(10) FOREIGN KEY  REFERENCES tb_student,
-	classID			NCHAR(10) FOREIGN KEY  REFERENCES tb_class,
+	studentID		NCHAR(10) ,
+	classID			NCHAR(10) ,
+	CONSTRAINT FK_tb_student_class 
+			FOREIGN KEY (studentID) REFERENCES tb_student(studentID),
+			FOREIGN KEY (classID) REFERENCES tb_class(classID),
 );
 GO
 
