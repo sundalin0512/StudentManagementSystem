@@ -17,7 +17,18 @@ class Socket
 	enum class MessageType
 	{
 		Nop,
-
+		Add,
+		AddSuccess,
+		AddFail,
+		Delete,
+		DeleteSuccess,
+		DeleteFail,
+		Modify,
+		ModifySuccess,
+		ModifyFail,
+		Query,
+		QuerySuccess,
+		QueryFail,
 	};
 
 	struct SOCKET_IO_CONTEXT {
