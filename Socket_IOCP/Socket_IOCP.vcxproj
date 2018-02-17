@@ -161,6 +161,9 @@
     <ClInclude Include="TcpSocketManager.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\include\mydefines.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
     <ClCompile Include="..\include\tools.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>

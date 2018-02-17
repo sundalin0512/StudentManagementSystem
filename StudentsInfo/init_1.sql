@@ -21,7 +21,7 @@ USE student
 GO
 CREATE TABLE tb_student
 (
-	studentID		NCHAR(10) PRIMARY KEY CLUSTERED,
+	studentID		NCHAR(10) NOT NULL PRIMARY KEY CLUSTERED,
 	studentName		NCHAR(8)        ,
 	sex				NCHAR(2)            ,            
 	telephone		NCHAR(20)	   ,
@@ -29,14 +29,14 @@ CREATE TABLE tb_student
 GO
 CREATE TABLE tb_course
 (
-	courseID		NCHAR(10) PRIMARY KEY CLUSTERED,
+	courseID		NCHAR(10) NOT NULL PRIMARY KEY CLUSTERED,
 	courseName		NCHAR(20) 
 );
 GO
 CREATE TABLE tb_student_course
 (
-	courseID		NCHAR(10) ,
-	studentID		NCHAR(10) ,
+	courseID		NCHAR(10)  NOT NULL,
+	studentID		NCHAR(10)  NOT NULL,
 	grade			int		 ,
 	CONSTRAINT FK_tb_student_course 
 			FOREIGN KEY (courseID) REFERENCES tb_course(courseID),
@@ -45,20 +45,25 @@ CREATE TABLE tb_student_course
 GO
 CREATE TABLE tb_class
 (
-	classID			NCHAR(10) PRIMARY KEY CLUSTERED,
+	classID			NCHAR(10) NOT NULL PRIMARY KEY CLUSTERED,
 	className		NCHAR(10),
 );
 GO
 CREATE TABLE tb_student_class
 (
-	studentID		NCHAR(10) ,
-	classID			NCHAR(10) ,
+	studentID		NCHAR(10) NOT NULL ,
+	classID			NCHAR(10) NOT NULL ,
 	CONSTRAINT FK_tb_student_class 
 			FOREIGN KEY (studentID) REFERENCES tb_student(studentID),
 			FOREIGN KEY (classID) REFERENCES tb_class(classID),
 );
 GO
 
+CREATE TABLE tb_update_time
+(
+	tableName				NCHAR(20) NOT NULL PRIMARY KEY CLUSTERED,
+	updateTime				INT
+)
 
 INSERT INTO tb_student VALUES (721017,	N'韩璐冰',N'男',11234567890);
 INSERT INTO tb_student VALUES (721025,	N'刘海江',N'男',12345678901);
@@ -688,3 +693,11 @@ INSERT INTO tb_student_class VALUES(721009,  4);
 INSERT INTO tb_student_class VALUES(721019,  4);
 INSERT INTO tb_student_class VALUES(721008,  4);
 INSERT INTO tb_student_class VALUES(721062,  4);
+
+
+INSERT INTO tb_update_time VALUES(N'tb_student',  0);
+INSERT INTO tb_update_time VALUES(N'tb_course',  0);
+INSERT INTO tb_update_time VALUES(N'tb_class',  0);
+INSERT INTO tb_update_time VALUES(N'tb_student_course',  0);
+INSERT INTO tb_update_time VALUES(N'tb_student_class',  0);
+

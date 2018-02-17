@@ -56,5 +56,8 @@
     <ClCompile Include="..\include\tools.cpp">
       <Filter>include</Filter>
     </ClCompile>
+    <ClCompile Include="..\include\mydefines.cpp">
+      <Filter>include</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
