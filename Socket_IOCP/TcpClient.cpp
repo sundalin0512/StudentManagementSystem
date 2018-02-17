@@ -148,13 +148,13 @@ bool TcpClient::ToSend(char*& buffer, size_t & length)
 	if (!isEmpty)
 	{
 		Socket::MessageData front = this->m_sendQueue.front();
-		length = front.length + sizeof(size_t) + sizeof(Socket::MessageType);
+		length = front.length + sizeof(size_t) + sizeof(MessageType);
 		buffer = new char[length];
 		memcpy_s(buffer, sizeof(size_t), &front.length, sizeof(size_t));
-		memcpy_s(buffer + sizeof(size_t), sizeof(Socket::MessageType), &front.type, sizeof(Socket::MessageType));
+		memcpy_s(buffer + sizeof(size_t), sizeof(MessageType), &front.type, sizeof(MessageType));
 		if (front.data != nullptr)
 		{
-			memcpy_s(buffer + sizeof(size_t) + sizeof(Socket::MessageType), front.length, front.data, front.length);
+			memcpy_s(buffer + sizeof(size_t) + sizeof(MessageType), front.length, front.data, front.length);
 		}
 		delete front.data;
 		this->m_sendQueue.pop();
@@ -188,11 +188,11 @@ DWORD TcpClient::Received(CHAR* buf, DWORD length)
 	{
 		Socket::MessageData *last = new Socket::MessageData;
 		last->length = *(size_t*)&m_recvDataQueue[0];
-		if (last->length <= m_recvDataQueue.size() - sizeof(size_t) - sizeof(Socket::MessageType))
+		if (last->length <= m_recvDataQueue.size() - sizeof(size_t) - sizeof(MessageType))
 		{
 			m_recvDataQueue.erase(m_recvDataQueue.begin(), m_recvDataQueue.begin() + sizeof(size_t));
-			last->type = (Socket::MessageType)m_recvDataQueue[0];
-			m_recvDataQueue.erase(m_recvDataQueue.begin(), m_recvDataQueue.begin() + sizeof(Socket::MessageType));
+			last->type = (MessageType)m_recvDataQueue[0];
+			m_recvDataQueue.erase(m_recvDataQueue.begin(), m_recvDataQueue.begin() + sizeof(MessageType));
 			last->data = new char[last->length];
 			std::move(m_recvDataQueue.begin(), m_recvDataQueue.begin() + last->length, last->data);
 			//(last.data, last.length, &dataQueue[0], last.length);

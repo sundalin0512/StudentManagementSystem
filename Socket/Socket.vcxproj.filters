@@ -13,6 +13,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="include">
+      <UniqueIdentifier>{84634f05-55c1-499f-b4f1-c555b741919d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -30,6 +33,12 @@
     <ClInclude Include="TcpServer.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="..\include\mydefines.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\tools.h">
+      <Filter>include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -43,6 +52,9 @@
     </ClCompile>
     <ClCompile Include="TcpServer.cpp">
       <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\include\tools.cpp">
+      <Filter>include</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
