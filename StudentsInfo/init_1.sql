@@ -36,11 +36,13 @@ GO
 CREATE TABLE tb_student_course
 (
 	courseID		NCHAR(10)  NOT NULL,
-	studentID		NCHAR(10)  NOT NULL,
+	studentID		NCHAR(10)  NOT NULL PRIMARY KEY(courseID, studentID),
 	grade			int		 ,
 	CONSTRAINT FK_tb_student_course 
 			FOREIGN KEY (courseID) REFERENCES tb_course(courseID),
 			FOREIGN KEY (studentID) REFERENCES tb_student(studentID),
+	--CONSTRAINT PK_tb_student_course
+	--		PRIMARY KEY(courseID, studentID)
 );
 GO
 CREATE TABLE tb_class
@@ -52,10 +54,12 @@ GO
 CREATE TABLE tb_student_class
 (
 	studentID		NCHAR(10) NOT NULL ,
-	classID			NCHAR(10) NOT NULL ,
+	classID			NCHAR(10) NOT NULL PRIMARY KEY(studentID, classID),
 	CONSTRAINT FK_tb_student_class 
 			FOREIGN KEY (studentID) REFERENCES tb_student(studentID),
 			FOREIGN KEY (classID) REFERENCES tb_class(classID),
+	--CONSTRAINT PK_tb_student_class 
+	--		PRIMARY KEY(studentID, classID)
 );
 GO
 
@@ -695,9 +699,5 @@ INSERT INTO tb_student_class VALUES(721008,  4);
 INSERT INTO tb_student_class VALUES(721062,  4);
 
 
-INSERT INTO tb_update_time VALUES(N'tb_student',  0);
-INSERT INTO tb_update_time VALUES(N'tb_course',  0);
-INSERT INTO tb_update_time VALUES(N'tb_class',  0);
-INSERT INTO tb_update_time VALUES(N'tb_student_course',  0);
-INSERT INTO tb_update_time VALUES(N'tb_student_class',  0);
+INSERT INTO tb_update_time VALUES(N'updateTime',  0);
 

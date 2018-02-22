@@ -7,7 +7,22 @@ enum class SelectTable
 	tb_studentClass
 };
 
+enum class SelectKey
+{
+	studentID,
+	studentName,
+	sex,
+	telephone,
+	courseID,
+	courseName,
+	grade,
+	classID,
+	className,
+};
+
 extern const char* strTables[];
+extern const char* strKeyNames[];
+extern const char* strKeyNamesWithTable[];
 
 enum class MessageType
 {
@@ -20,16 +35,16 @@ enum class MessageType
 
 	Add,
 	AddExcute,
-	AddSuccess,
-	AddFail,
+
 	Delete,
 	DeleteExcute,
-	DeleteSuccess,
-	DeleteFail,
+
 	Modify,
 	ModifyExcute,
-	ModifySuccess,
-	ModifyFail,
+
+	Success,
+	Fail,
+
 	Query,
 	QueryExcute,
 	QuerySuccess,
