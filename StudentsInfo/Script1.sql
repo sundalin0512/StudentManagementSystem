@@ -1,1 +1,1 @@
-﻿UPDATE tb_student SET studentName = 'aa'
+﻿DELETE FROM tb_class WHERE classID = 12

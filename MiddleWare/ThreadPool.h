@@ -1,6 +1,5 @@
 #pragma once
 #include <queue>
-#include <Windows.h>
 #include "ITask.h"
 
 class ThreadPool

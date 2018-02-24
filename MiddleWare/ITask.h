@@ -1,109 +1,66 @@
 #pragma once
-class CRemoteToolClientDlg;
+#include <map>
 class TcpClient;
-struct TcpClient::MessageData;
+
 
 class ITask
 {
 	public:
-	ITask(CRemoteToolClientDlg* thisDlg, TcpClient::MessageData* message) : thisDlg(thisDlg), message(message){}
-	virtual ~ITask()
-	{
-		delete message->data;
-		delete message;
-	}
+	ITask(std::pair< TcpClient*, TcpClientData* >* sqlServer, TcpClient::MessageData* message, TcpClientData* clientData);
+	virtual ~ITask();
 	virtual void Run() = 0;
-	CRemoteToolClientDlg* thisDlg;
-	TcpClient::MessageData* message;
+	std::pair< TcpClient*, TcpClientData* >* g_sqlServer;
+	TcpClient::MessageData* receiveMessage;
+	TcpClientData* clientData;
 };
 
-class TaskCmdOpen :
+
+class TaskAdd :
 	public ITask
 {
 	public:
-	TaskCmdOpen(CRemoteToolClientDlg* thisDlg, TcpClient::MessageData* message) : ITask(thisDlg,  message){}
-	~TaskCmdOpen(){}
-
-	virtual void Run() override;
-};
-class TaskCmdCommandRequset :
-	public ITask
-{
-	public:
-	TaskCmdCommandRequset(CRemoteToolClientDlg* thisDlg, TcpClient::MessageData* message) : ITask(thisDlg, message) {}
-	~TaskCmdCommandRequset() {}
+	TaskAdd(std::pair< TcpClient*, TcpClientData* >* sqlServer, TcpClient::MessageData* message, TcpClientData* clientData) : ITask(sqlServer, message, clientData) {}
+	~TaskAdd() {}
 
 	virtual void Run() override;
 };
-class TaskScreenCommandRequset :
+
+class TaskDelete :
 	public ITask
 {
 	public:
-	TaskScreenCommandRequset(CRemoteToolClientDlg* thisDlg, TcpClient::MessageData* message) : ITask(thisDlg, message) {}
-	~TaskScreenCommandRequset() {}
+	TaskDelete(std::pair< TcpClient*, TcpClientData* >* sqlServer, TcpClient::MessageData* message, TcpClientData* clientData) : ITask(sqlServer, message, clientData) {}
+	~TaskDelete() {}
 
 	virtual void Run() override;
 };
-class TaskFileQueryRequset :
+
+class TaskModify :
 	public ITask
 {
 	public:
-	TaskFileQueryRequset(CRemoteToolClientDlg* thisDlg, TcpClient::MessageData* message) : ITask(thisDlg, message) {}
-	~TaskFileQueryRequset() {}
+	TaskModify(std::pair< TcpClient*, TcpClientData* >* sqlServer, TcpClient::MessageData* message, TcpClientData* clientData) : ITask(sqlServer, message, clientData) {}
+	~TaskModify() {}
 
 	virtual void Run() override;
 };
-class TaskFileDownloadRequset :
+
+class TaskQuery :
 	public ITask
 {
 	public:
-	TaskFileDownloadRequset(CRemoteToolClientDlg* thisDlg, TcpClient::MessageData* message) : ITask(thisDlg, message) {}
-	~TaskFileDownloadRequset() {}
+	TaskQuery(std::pair< TcpClient*, TcpClientData* >* sqlServer, TcpClient::MessageData* message, TcpClientData* clientData) : ITask(sqlServer, message, clientData) {}
+	~TaskQuery() {}
 
 	virtual void Run() override;
 };
-class TaskFileUploadReply :
-	public ITask
-{
-	public:
-	TaskFileUploadReply(CRemoteToolClientDlg* thisDlg, TcpClient::MessageData* message) : ITask(thisDlg, message) {}
-	~TaskFileUploadReply() {}
 
-	virtual void Run() override;
-};
-class TaskFileUploadReplyIsDir :
+class TaskQueryAsk :
 	public ITask
 {
 	public:
-	TaskFileUploadReplyIsDir(CRemoteToolClientDlg* thisDlg, TcpClient::MessageData* message) : ITask(thisDlg, message) {}
-	~TaskFileUploadReplyIsDir() {}
-
-	virtual void Run() override;
-};
-class TaskProcessOpenRequest :
-	public ITask
-{
-	public:
-	TaskProcessOpenRequest(CRemoteToolClientDlg* thisDlg, TcpClient::MessageData* message) : ITask(thisDlg, message) {}
-	~TaskProcessOpenRequest() {}
-
-	virtual void Run() override;
-};
-class TaskProcessTerminateRequest :
-	public ITask
-{
-	public:
-	TaskProcessTerminateRequest(CRemoteToolClientDlg* thisDlg, TcpClient::MessageData* message) : ITask(thisDlg, message) {}
-	~TaskProcessTerminateRequest() {}
-
-	virtual void Run() override;
-};
-class TaskHeartBeatReply :
-	public ITask
-{
-	public:
-	TaskHeartBeatReply(CRemoteToolClientDlg* thisDlg, TcpClient::MessageData* message) : ITask(thisDlg, message) {}
-	~TaskHeartBeatReply() {}
+	TaskQueryAsk(std::pair< TcpClient*, TcpClientData* >* sqlServer, TcpClient::MessageData* message, TcpClientData* clientData) : ITask(sqlServer, message, clientData) {}
+	~TaskQueryAsk() {}
 
 	virtual void Run() override;
 };

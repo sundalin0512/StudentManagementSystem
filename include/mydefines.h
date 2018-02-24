@@ -1,3 +1,5 @@
+#pragma once
+
 enum class SelectTable
 {
 	tb_student,
@@ -45,6 +47,9 @@ enum class MessageType
 	Success,
 	Fail,
 
+	QueryAsk,
+	QueryAnsNoUpdate,
+	QueryAnsUpdate,
 	Query,
 	QueryExcute,
 	QuerySuccess,
@@ -60,3 +65,4 @@ enum class MessageType
 #define COURSE_GRADE "grade"
 #define CLASS_ID "classID"
 #define CLASS_NAME "className"
+
